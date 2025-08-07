@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-and-test:
-    name: Build & Run UI Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +23,12 @@ jobs:
       - name: Grant execute permission to Gradle wrapper
         run: chmod +x gradlew
 
-      - name: Build and run tests
+      - name: Build and run Cucumber tests
         run: ./gradlew clean test
 
-      - name: Upload test results
+      - name: Upload Cucumber HTML report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-report
-          path: build/reports/tests/test
+          name: cucumber-html-report
+          path: build/reports/tests/test/
